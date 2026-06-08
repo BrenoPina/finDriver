@@ -1,0 +1,79 @@
+.driver__sidebar {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  min-width: 300px;
+}
+
+.sidebar__title {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-main);
+  margin-bottom: var(--spacing-md);
+}
+
+.sidebar__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: transform 0.2s ease;
+}
+
+.sidebar__item:hover {
+  transform: scale(1.05);
+}
+
+.sidebar__item--all {
+  background-color: var(--color-status-all-drivers-light);
+}
+
+.sidebar__label-all {
+  color: var(--color-primary);
+}
+
+.sidebar__item--finalizada {
+  background-color: var(--color-status-success-light);
+}
+
+.sidebar__label-finalizada {
+  color: var(--color-status-success);
+}
+
+.sidebar__item--em_andamento {
+  background-color: var(--color-status-ongoing-light);
+}
+
+.sidebar__label-em_andamento {
+  color: var(--color-status-ongoing);
+}
+
+.sidebar__item--pendente {
+  background-color: var(--color-status-pending-light);
+}
+
+.sidebar__label-pendente {
+  color: var(--color-status-pending);
+}
+
+.sidebar__item--cancelada {
+  background-color: var(--color-status-danger-light);
+}
+
+.sidebar__label-cancelada {
+  color: var(--color-status-danger);
+}
+
+.sidebar__label-count {
+  font-size: var(--font-size-xl);
+}

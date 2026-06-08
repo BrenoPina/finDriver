@@ -1,0 +1,115 @@
+.dashboard__container {
+  margin-top: calc(var(--header-height) + 2rem);
+  display: flex;
+  gap: var(--spacing-xl);
+  align-items: flex-start;
+}
+
+.driver__container {
+  flex: 1;
+}
+
+.driver__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.driver__card {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease;
+}
+
+.driver__card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.driver__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-sm);
+}
+
+.driver__data {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.driver__id {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-muted);
+}
+
+.driver__status {
+  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-lg);
+}
+
+.driver__status--pendente {
+  background-color: var(--color-status-pending);
+}
+
+.driver__status--em_andamento {
+  background-color: var(--color-status-ongoing);
+}
+
+.driver__status--finalizada {
+  background-color: var(--color-status-success);
+}
+
+.driver__status--cancelada {
+  background-color: var(--color-status-danger);
+}
+
+.driver__price {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.driver__driver,
+.driver__client {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-muted);
+}
+
+.driver__driver strong,
+.driver__client strong {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-main);
+}
+
+.driver__names {
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+}
+
+.driver__addresses {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.driver-card__address-group {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-md);
+}
+
+.driver-card__address-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}

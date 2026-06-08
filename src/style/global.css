@@ -10,11 +10,18 @@
   --color-status-success: #4caf50; /* Verde: Finalizada */
   --color-status-danger: #f44336; /* Vermelho: Cancelada */
 
+  --color-status-pending-light: #fff7ed; /* Laranja: Pendente */
+  --color-status-ongoing-light: #eff6ff; /* Azul: Em andamento */
+  --color-status-success-light: #f0fdf4; /* Verde: Finalizada */
+  --color-status-danger-light: #f8ecec; /* Vermelho: Cancelada */
+  --color-status-all-drivers-light: #f3f4f6;
+
   /* Neutros (Fundos e Textos) */
   --color-bg-main: #f5f7fa; /* Fundo do painel */
   --color-bg-card: #ffffff; /* Fundo dos cards de corrida */
   --color-text-main: #2c3e50; /* Texto principal */
   --color-text-muted: #7f8c8d; /* Texto secundário */
+  --color-text-light: #fff;
   --color-border: #e2e8f0; /* Linhas divisórias e bordas */
 
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -86,7 +93,12 @@ button {
   cursor: pointer;
 }
 
+section {
+  padding-block: 0 var(--spacing-lg);
+}
+
 .container {
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
+  padding-inline: var(--spacing-lg);
 }
