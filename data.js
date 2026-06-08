@@ -135,3 +135,5 @@ const ridesMock = [
     status: 'pendente'
   }
 ];
+
+export default ridesMock;

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/style/style.css" />
     <script src="https://kit.fontawesome.com/2d676e8f7d.js" crossorigin="anonymous"></script>
+    <script type="module" src="src/js/main.js"></script>
     <title>Machine Dash</title>
   </head>
   <body>
@@ -25,106 +26,33 @@
     <main class="dashboard__container container">
       <section class="driver__container">
         <ul class="driver__list">
-          <li class="driver__card">
-            <header class="driver__header">
-              <div class="driver__data">
-                <h3 class="driver__id">GDM-4022</h3>
-                <span class="driver__status driver__status--em_andamento">Em andamento</span>
+          <template id="driver-card-template">
+            <li class="driver__card">
+              <header class="driver__header">
+                <div class="driver__data">
+                  <h3 class="driver__id"></h3>
+                  <span class="driver__status driver__status--em_andamento"></span>
+                </div>
+                <span class="driver__price"></span>
+              </header>
+
+              <div class="driver__names">
+                <p class="driver__driver">Motorista: <strong class="driver__driver-name"></strong></p>
+                <p class="driver__client">Cliente: <strong class="driver__client-name"></strong></p>
               </div>
-              <span class="driver__price">R$ 45.90</span>
-            </header>
 
-            <div class="driver__names">
-              <p class="driver__driver">Motorista: <strong>Marcos Oliveira</strong></p>
-              <p class="driver__client">Cliente: <strong>Carlos Silva</strong></p>
-            </div>
-
-            <div class="driver__addresses">
-              <p class="driver-card__address-group">
-                <span class="driver-card__address-label">Origem:</span>
-                Av. Paulista, 1000 - São Paulo, SP
-              </p>
-              <p class="driver-card__address-group">
-                <span class="driver-card__address-label">Destino:</span>
-                Aeroporto de Congonhas - São Paulo, SP
-              </p>
-            </div>
-          </li>
-          <li class="driver__card">
-            <header class="driver__header">
-              <div class="driver__data">
-                <h3 class="driver__id">GDM-4022</h3>
-                <span class="driver__status driver__status--cancelada">Cancelada</span>
+              <div class="driver__addresses">
+                <p class="driver-card__address-group">
+                  <span class="driver-card__address-label">Origem:</span>
+                  <span class="driver__origin-text"></span>
+                </p>
+                <p class="driver-card__address-group">
+                  <span class="driver-card__address-label">Destino:</span>
+                  <span class="driver__destiny-text"></span>
+                </p>
               </div>
-              <span class="driver__price">R$ 45.90</span>
-            </header>
-
-            <div class="driver__names">
-              <p class="driver__driver">Motorista: <strong>Marcos Oliveira</strong></p>
-              <p class="driver__client">Cliente: <strong>Carlos Silva</strong></p>
-            </div>
-
-            <div class="driver__addresses">
-              <p class="driver-card__address-group">
-                <span class="driver-card__address-label">Origem:</span>
-                Av. Paulista, 1000 - São Paulo, SP
-              </p>
-              <p class="driver-card__address-group">
-                <span class="driver-card__address-label">Destino:</span>
-                Aeroporto de Congonhas - São Paulo, SP
-              </p>
-            </div>
-          </li>
-          <li class="driver__card">
-            <header class="driver__header">
-              <div class="driver__data">
-                <h3 class="driver__id">GDM-4022</h3>
-                <span class="driver__status driver__status--pendente">Pendente</span>
-              </div>
-              <span class="driver__price">R$ 45.90</span>
-            </header>
-
-            <div class="driver__names">
-              <p class="driver__driver">Motorista: <strong>Marcos Oliveira</strong></p>
-              <p class="driver__client">Cliente: <strong>Carlos Silva</strong></p>
-            </div>
-
-            <div class="driver__addresses">
-              <p class="driver-card__address-group">
-                <span class="driver-card__address-label">Origem:</span>
-                Av. Paulista, 1000 - São Paulo, SP
-              </p>
-              <p class="driver-card__address-group">
-                <span class="driver-card__address-label">Destino:</span>
-                Aeroporto de Congonhas - São Paulo, SP
-              </p>
-            </div>
-          </li>
-          <li class="driver__card">
-            <header class="driver__header">
-              <div class="driver__data">
-                <h3 class="driver__id">GDM-4022</h3>
-                <span class="driver__status driver__status--finalizada">Finalizada</span>
-              </div>
-              <span class="driver__price">R$ 45.90</span>
-            </header>
-
-            <div class="driver__names">
-              <p class="driver__driver">Motorista: <strong>Marcos Oliveira</strong></p>
-              <p class="driver__client">Cliente: <strong>Carlos Silva</strong></p>
-            </div>
-
-            <div class="driver__addresses">
-              <p class="driver-card__address-group">
-                <span class="driver-card__address-label">Origem:</span>
-                Av. Paulista, 1000 - São Paulo, SP
-              </p>
-              <p class="driver-card__address-group">
-                <span class="driver-card__address-label">Destino:</span>
-                Aeroporto de Congonhas - São Paulo, SP
-              </p>
-            </div>
-          </li>
+            </li>
+          </template>
         </ul>
       </section>
       <aside class="driver__sidebar">
