@@ -1,5 +1,10 @@
 import ridesMock from '../../data.js';
 
+const currencyFormatter = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL'
+});
+
 function renderDrivers(drivers) {
   const driversContainer = document.querySelector('.driver__list');
   const template = document.getElementById('driver-card-template');
@@ -11,8 +16,7 @@ function renderDrivers(drivers) {
     const cardClone = template.content.cloneNode(true);
 
     cardClone.querySelector('.driver__id').textContent = driver.id;
-    cardClone.querySelector('.driver__status').textContent = driver.status;
-    cardClone.querySelector('.driver__price').textContent = `R$ ${driver.price}`;
+    cardClone.querySelector('.driver__price').textContent = currencyFormatter.format(driver.price);
     cardClone.querySelector('.driver__driver-name').textContent = driver.driver;
     cardClone.querySelector('.driver__client-name').textContent = driver.client;
     cardClone.querySelector('.driver__origin-text').textContent = driver.origin;
