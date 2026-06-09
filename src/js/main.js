@@ -1,4 +1,5 @@
 import ridesMock from '../../data.js';
+import currencyFormatter from './utils.js';
 
 const statusConfig = {
   em_andamento: 'Em andamento',
@@ -6,11 +7,6 @@ const statusConfig = {
   finalizada: 'Finalizada',
   cancelada: 'Cancelada'
 };
-
-const currencyFormatter = new Intl.NumberFormat('pt-BR', {
-  style: 'currency',
-  currency: 'BRL'
-});
 
 function renderDrivers(drivers) {
   const driversContainer = document.querySelector('.driver__list');
