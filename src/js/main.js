@@ -8,6 +8,27 @@ const statusConfig = {
   cancelada: 'Cancelada'
 };
 
+function renderRideStats(rides) {
+  const stats = rides.reduce(
+    (acc, ride) => {
+      acc.total++;
+
+      if (acc[ride.status] !== undefined) {
+        acc[ride.status]++;
+      }
+
+      return acc;
+    },
+    { total: 0, finalizada: 0, em_andamento: 0, pendente: 0, cancelada: 0 }
+  );
+
+  document.querySelector('.sidebar__label-all').textContent = stats.total;
+  document.querySelector('.sidebar__label-finalizada').textContent = stats.finalizada;
+  document.querySelector('.sidebar__label-em_andamento').textContent = stats.em_andamento;
+  document.querySelector('.sidebar__label-pendente').textContent = stats.pendente;
+  document.querySelector('.sidebar__label-cancelada').textContent = stats.cancelada;
+}
+
 function renderDrivers(drivers) {
   const driversContainer = document.querySelector('.driver__list');
   const template = document.getElementById('driver-card-template');
@@ -33,4 +54,5 @@ function renderDrivers(drivers) {
   driversContainer.appendChild(fragment);
 }
 
+renderRideStats(ridesMock);
 renderDrivers(ridesMock);
