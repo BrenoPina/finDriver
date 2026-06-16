@@ -1,12 +1,47 @@
 .dashboard__container {
   margin-top: calc(var(--header-height) + 2rem);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 300px;
   gap: var(--spacing-xl);
   align-items: flex-start;
 }
 
-.driver__container {
+.dashboard__header {
+  grid-column: 1/2;
+}
+
+.search__container {
+  position: relative;
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  outline: none;
+  background-color: var(--color-bg-card);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-md);
+
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.search__container i {
+  color: var(--color-text-muted);
+}
+
+.search__input {
   flex: 1;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  font-family: var(--font-family);
+  color: var(--color-text-main);
+}
+
+.driver__container {
+  grid-column: 1/2;
 }
 
 .driver__list {

@@ -24,60 +24,65 @@
       </div>
     </header>
     <main class="dashboard__container container">
+      <div class="dashboard__header">
+        <div class="search__container">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input class="search__input" type="text" placeholder="Digite um motorista ou um cliente" id="search__input" />
+        </div>
+      </div>
       <section class="driver__container">
-        <ul class="driver__list">
-          <template id="driver-card-template">
-            <li class="driver__card">
-              <header class="driver__header">
-                <div class="driver__data">
-                  <h3 class="driver__id"></h3>
-                  <span class="driver__status"></span>
-                </div>
-                <span class="driver__price"></span>
-              </header>
-
-              <div class="driver__names">
-                <p class="driver__driver">Motorista: <strong class="driver__driver-name"></strong></p>
-                <p class="driver__client">Cliente: <strong class="driver__client-name"></strong></p>
-              </div>
-
-              <div class="driver__addresses">
-                <p class="driver-card__address-group">
-                  <span class="driver-card__address-label">Origem:</span>
-                  <span class="driver__origin-text"></span>
-                </p>
-                <p class="driver-card__address-group">
-                  <span class="driver-card__address-label">Destino:</span>
-                  <span class="driver__destiny-text"></span>
-                </p>
-              </div>
-            </li>
-          </template>
-        </ul>
+        <ul class="driver__list"></ul>
       </section>
+      <template id="driver-card-template">
+        <li class="driver__card">
+          <header class="driver__header">
+            <div class="driver__data">
+              <h3 class="driver__id"></h3>
+              <span class="driver__status"></span>
+            </div>
+            <span class="driver__price"></span>
+          </header>
+
+          <div class="driver__names">
+            <p class="driver__driver">Motorista: <strong class="driver__driver-name"></strong></p>
+            <p class="driver__client">Cliente: <strong class="driver__client-name"></strong></p>
+          </div>
+
+          <div class="driver__addresses">
+            <p class="driver-card__address-group">
+              <span class="driver-card__address-label">Origem:</span>
+              <span class="driver__origin-text"></span>
+            </p>
+            <p class="driver-card__address-group">
+              <span class="driver-card__address-label">Destino:</span>
+              <span class="driver__destiny-text"></span>
+            </p>
+          </div>
+        </li>
+      </template>
       <aside class="driver__sidebar">
         <h2 class="sidebar__title">Estatísticas rápidas</h2>
         <article class="sidebar__panel">
           <ul class="sidebar__list">
             <li class="sidebar__item sidebar__item--all">
               <p class="sidebar__label">Corridas totais</p>
-              <span class="sidebar__label-count sidebar__label-all"></span>
+              <span class="sidebar__label-count sidebar__label-all" id="sidebar__label-all"></span>
             </li>
             <li class="sidebar__item sidebar__item--finalizada">
               <p class="sidebar__label">Finalizadas</p>
-              <span class="sidebar__label-count sidebar__label-finalizada"></span>
+              <span class="sidebar__label-count sidebar__label-finalizada" id="sidebar__label-finalizada"></span>
             </li>
             <li class="sidebar__item sidebar__item--em_andamento">
               <p class="sidebar__label">Em andamento</p>
-              <span class="sidebar__label-count sidebar__label-em_andamento"></span>
+              <span class="sidebar__label-count sidebar__label-em_andamento" id="sidebar__label-em_andamento"></span>
             </li>
             <li class="sidebar__item sidebar__item--pendente">
               <p class="sidebar__label">Pendentes</p>
-              <span class="sidebar__label-count sidebar__label-pendente"></span>
+              <span class="sidebar__label-count sidebar__label-pendente" id="sidebar__label-pendente"></span>
             </li>
             <li class="sidebar__item sidebar__item--cancelada">
               <p class="sidebar__label">Canceladas</p>
-              <span class="sidebar__label-count sidebar__label-cancelada"></span>
+              <span class="sidebar__label-count sidebar__label-cancelada" id="sidebar__label-cancelada"></span>
             </li>
           </ul>
         </article>
