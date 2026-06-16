@@ -2,7 +2,8 @@ import ridesMock from '../../data.js';
 import currencyFormatter from './utils.js';
 
 const searchInput = document.querySelector('#search__input');
-const driverContainer = document.querySelector('.driver-card-template');
+const ridesContainer = document.querySelector('.driver__list');
+const cardContainer = document.querySelector('.driver-card-template');
 
 const statusConfig = {
   em_andamento: 'Em andamento',
@@ -32,7 +33,7 @@ function renderRideStats(rides) {
   document.querySelector('#sidebar__label-cancelada').textContent = stats.cancelada;
 }
 
-function renderDrivers(drivers) {
+function renderRides(drivers) {
   const driversContainer = document.querySelector('.driver__list');
   const template = document.getElementById('driver-card-template');
 
@@ -57,22 +58,38 @@ function renderDrivers(drivers) {
 function filterRides(term) {
   const formattedTerm = term.toLowerCase().trim();
 
-  if (!formattedTerm) return ridesMock;
+  if (!formattedTerm) {
+    renderRides(ridesMock);
+    renderRideStats(ridesMock);
+    return;
+  }
 
-  return ridesMock.filter(ride => {
-    const matchDriver = ride.driver.toLocaleLowerCase().includes(formattedTerm);
-
+  const filteredList = ridesMock.filter(ride => {
+    const matchDriver = ride.driver.toLowerCase().includes(formattedTerm);
     const matchClient = ride.client.toLowerCase().includes(formattedTerm);
-
     return matchDriver || matchClient;
   });
+
+  renderRides(filteredList);
+  renderRideStats(filteredList);
 }
 
-searchInput.addEventListener('input', event => {
+function debounce(func, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
+
+const debounceFilter = debounce(event => {
   const valorDigitado = event.target.value;
-  const dadosFiltrados = filterRides(valorDigitado);
-  renderDrivers(dadosFiltrados);
-});
+  filterRides(valorDigitado);
+}, 500);
+
+searchInput.addEventListener('input', debounceFilter);
 
 renderRideStats(ridesMock);
-renderDrivers(ridesMock);
+renderRides(ridesMock);
