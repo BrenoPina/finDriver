@@ -3,7 +3,7 @@ import currencyFormatter from './utils.js';
 
 const searchInput = document.querySelector('#search__input');
 const ridesContainer = document.querySelector('.driver__list');
-const cardContainer = document.querySelector('.driver-card-template');
+const cardTemplate = document.querySelector('.driver-card-template');
 
 const statusElements = {
   all: document.querySelector('#sidebar__label-all'),
@@ -41,26 +41,23 @@ function renderRideStats(rides) {
   statusElements.canceled.textContent = stats.cancelada;
 }
 
-function renderRides(drivers) {
-  const driversContainer = document.querySelector('.driver__list');
-  const template = document.getElementById('driver-card-template');
-
+function renderRides(rides) {
   const fragment = document.createDocumentFragment();
-  driversContainer.textContent = '';
+  ridesContainer.textContent = '';
 
-  drivers.forEach(driver => {
-    const cardClone = template.content.cloneNode(true);
-    cardClone.querySelector('.driver__id').textContent = driver.id;
-    cardClone.querySelector('.driver__status').textContent = statusConfig[driver.status];
-    cardClone.querySelector('.driver__status').classList.add(`driver__status--${driver.status}`);
-    cardClone.querySelector('.driver__price').textContent = currencyFormatter.format(driver.price);
-    cardClone.querySelector('.driver__driver-name').textContent = driver.driver;
-    cardClone.querySelector('.driver__client-name').textContent = driver.client;
-    cardClone.querySelector('.driver__origin-text').textContent = driver.origin;
-    cardClone.querySelector('.driver__destiny-text').textContent = driver.destiny;
+  rides.forEach(ride => {
+    const cardClone = cardTemplate.content.cloneNode(true);
+    cardClone.querySelector('.driver__id').textContent = ride.id;
+    cardClone.querySelector('.driver__status').textContent = statusConfig[ride.status];
+    cardClone.querySelector('.driver__status').classList.add(`driver__status--${ride.status}`);
+    cardClone.querySelector('.driver__price').textContent = currencyFormatter.format(ride.price);
+    cardClone.querySelector('.driver__driver-name').textContent = ride.driver;
+    cardClone.querySelector('.driver__client-name').textContent = ride.client;
+    cardClone.querySelector('.driver__origin-text').textContent = ride.origin;
+    cardClone.querySelector('.driver__destiny-text').textContent = ride.destiny;
     fragment.appendChild(cardClone);
   });
-  driversContainer.appendChild(fragment);
+  ridesContainer.appendChild(fragment);
 }
 
 function filterRides(term) {
@@ -93,8 +90,8 @@ function debounce(func, delay) {
 }
 
 const debounceFilter = debounce(event => {
-  const valorDigitado = event.target.value;
-  filterRides(valorDigitado);
+  const inputValue = event.target.value;
+  filterRides(inputValue);
 }, 500);
 
 searchInput.addEventListener('input', debounceFilter);
