@@ -45,6 +45,14 @@ function renderRides(rides) {
   const fragment = document.createDocumentFragment();
   ridesContainer.textContent = '';
 
+  if (rides.length === 0) {
+    const emptyMessage = document.createElement('p');
+    emptyMessage.className = 'driver__list-empty';
+    emptyMessage.textContent = 'Nenhuma corrida ou motorista encontrado para esta busca.';
+    ridesContainer.appendChild(emptyMessage);
+    return;
+  }
+
   rides.forEach(ride => {
     const cardClone = cardTemplate.content.cloneNode(true);
     cardClone.querySelector('.driver__id').textContent = ride.id;
