@@ -5,6 +5,14 @@ const searchInput = document.querySelector('#search__input');
 const ridesContainer = document.querySelector('.driver__list');
 const cardContainer = document.querySelector('.driver-card-template');
 
+const statusElements = {
+  all: document.querySelector('#sidebar__label-all'),
+  finished: document.querySelector('#sidebar__label-finalizada'),
+  in_progress: document.querySelector('#sidebar__label-em_andamento'),
+  pending: document.querySelector('#sidebar__label-pendente'),
+  canceled: document.querySelector('#sidebar__label-cancelada')
+};
+
 const statusConfig = {
   em_andamento: 'Em andamento',
   pendente: 'Pendente',
@@ -26,11 +34,11 @@ function renderRideStats(rides) {
     { total: 0, finalizada: 0, em_andamento: 0, pendente: 0, cancelada: 0 }
   );
 
-  document.querySelector('#sidebar__label-all').textContent = stats.total;
-  document.querySelector('#sidebar__label-finalizada').textContent = stats.finalizada;
-  document.querySelector('#sidebar__label-em_andamento').textContent = stats.em_andamento;
-  document.querySelector('#sidebar__label-pendente').textContent = stats.pendente;
-  document.querySelector('#sidebar__label-cancelada').textContent = stats.cancelada;
+  statusElements.all.textContent = stats.total;
+  statusElements.finished.textContent = stats.finalizada;
+  statusElements.in_progress.textContent = stats.em_andamento;
+  statusElements.pending.textContent = stats.pendente;
+  statusElements.canceled.textContent = stats.cancelada;
 }
 
 function renderRides(drivers) {
