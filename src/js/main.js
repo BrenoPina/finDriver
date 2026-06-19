@@ -1,6 +1,7 @@
 import ridesMock from '../../data.js';
 import currencyFormatter from './utils.js';
 
+const paginationContainer = document.querySelector('.pagination-container');
 const searchInput = document.querySelector('#search__input');
 const ridesContainer = document.querySelector('.driver__list');
 const cardTemplate = document.querySelector('.driver-card-template');
@@ -19,6 +20,15 @@ const statusConfig = {
   finalizada: 'Finalizada',
   cancelada: 'Cancelada'
 };
+
+let currentRaceList = [...ridesMock];
+let currentPage = 1;
+let itemsPerPage = 5;
+
+function updateRidesUi(ridesList) {
+  renderRides(ridesList);
+  renderRideStats(ridesList);
+}
 
 function renderRideStats(rides) {
   const stats = rides.reduce(
@@ -53,7 +63,11 @@ function renderRides(rides) {
     return;
   }
 
-  rides.forEach(ride => {
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const ridesToRender = rides.slice(startIndex, endIndex);
+
+  ridesToRender.forEach(ride => {
     const cardClone = cardTemplate.content.cloneNode(true);
     cardClone.querySelector('.driver__id').textContent = ride.id;
     cardClone.querySelector('.driver__status').textContent = statusConfig[ride.status];
@@ -66,14 +80,17 @@ function renderRides(rides) {
     fragment.appendChild(cardClone);
   });
   ridesContainer.appendChild(fragment);
+  renderPaginationControls(rides.length);
 }
 
 function filterRides(term) {
   const formattedTerm = term.toLowerCase().trim();
 
+  currentPage = 1;
+
   if (!formattedTerm) {
-    renderRides(ridesMock);
-    renderRideStats(ridesMock);
+    currentRaceList = [...ridesMock];
+    updateRidesUi(currentRaceList);
     return;
   }
 
@@ -83,8 +100,8 @@ function filterRides(term) {
     return matchDriver || matchClient;
   });
 
-  renderRides(filteredList);
-  renderRideStats(filteredList);
+  currentRaceList = filteredList;
+  updateRidesUi(currentRaceList);
 }
 
 function debounce(func, delay) {
@@ -102,7 +119,39 @@ const debounceFilter = debounce(event => {
   filterRides(inputValue);
 }, 500);
 
-searchInput.addEventListener('input', debounceFilter);
+function renderPaginationControls(totalItems) {
+  paginationContainer.textContent = '';
 
-renderRideStats(ridesMock);
-renderRides(ridesMock);
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  if (totalPages <= 1) return;
+
+  const prevButton = document.createElement('button');
+  prevButton.textContent = 'Anterior';
+  prevButton.className = 'pagination__btn';
+  prevButton.disabled = currentPage === 1;
+  prevButton.addEventListener('click', () => {
+    currentPage--;
+    renderRides(currentRaceList);
+  });
+
+  const pageInfo = document.createElement('span');
+  pageInfo.textContent = ` Página ${currentPage} de ${totalPages} `;
+  pageInfo.className = 'pagination__info';
+
+  const nextButton = document.createElement('button');
+  nextButton.textContent = 'Próximo';
+  nextButton.className = 'pagination__btn';
+  nextButton.disabled = currentPage === totalPages;
+  nextButton.addEventListener('click', () => {
+    currentPage++;
+    renderRides(currentRaceList);
+  });
+
+  paginationContainer.appendChild(prevButton);
+  paginationContainer.appendChild(pageInfo);
+  paginationContainer.appendChild(nextButton);
+}
+
+searchInput.addEventListener('input', debounceFilter);
+updateRidesUi(currentRaceList);
